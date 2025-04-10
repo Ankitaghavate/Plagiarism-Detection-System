@@ -1,0 +1,205 @@
+:root {
+    --primary: #0db6ae;
+    --danger: #ff0000;
+    --success: #00c853;
+    --warning: #ff9100;
+    --dark: #212529;
+    --light: #f8f9fa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+}
+
+.typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto 30px;
+    text-align: center;
+    color: var(--dark);
+    font-size: 2.5rem;
+    font-weight: 600;
+    border-right: 3px solid var(--primary);
+    animation: typing 3s steps(30, end), blink-caret 0.5s step-end infinite;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out;
+}
+
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    min-height: 150px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 182, 174, 0.3);
+}
+
+.check-btn {
+    position: relative;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+.clear-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+.check-btn:hover {
+    background: rgb(68, 180, 132);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 191, 0.3);
+}
+
+.check-btn .wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(0);
+    border-radius: 50%;
+    animation: ripple 1s linear infinite;
+    pointer-events: none;
+}
+
+.result-box {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    animation: slideUp 0.5s ease-out;
+}
+
+.result-box.detected {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid var(--danger);
+}
+
+.result-box.clean {
+    background-color: rgba(0, 200, 83, 0.1);
+    border-left: 4px solid var(--success);
+}
+
+.result-box h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.result-box.detected h3 {
+    color: var(--danger);
+}
+
+.result-box.clean h3 {
+    color: var(--success);
+}
+
+.text-preview {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.result-box.detected .text-preview {
+    color: #d3862f;
+    background-color: rgba(255, 0, 0, 0.05);
+}
+
+.result-box.clean .text-preview {
+    color: #2e7d32;
+    background-color: rgba(0, 200, 83, 0.05);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary) }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .typing-animation {
+        font-size: 1.8rem;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+}

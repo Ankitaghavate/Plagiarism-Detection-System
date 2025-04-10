@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Detector</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="typing-animation">Plagiarism Detection System</h1>
+        
+        <div class="card">
+            <form method="POST" action="/">
+                <textarea name="text_input" rows="6" placeholder="Enter text here to check for plagiarism..." required>{% if result %}{{ result.text }}{% endif %}</textarea>
+                <button type="submit" class="check-btn">
+                    <span>Check for Plagiarism</span>
+                    <div class="wave"></div>
+                </button>
+            </form>
+
+            {% if result %}
+            <div class="result-box {{ 'detected' if result.is_plagiarized else 'clean' }}">
+                <h3>{{ result.message }}</h3>
+                <div class="text-preview">
+                    <p>{{ result.text }}</p>
+                </div>
+                <button onclick="clearResults()" class="clear-btn">Clear Results</button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function clearResults() {
+            // Submit a form to clear the session
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/clear';
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
+</html>
